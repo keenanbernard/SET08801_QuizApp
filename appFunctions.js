@@ -1,6 +1,6 @@
 //selecting all required elements
 const start_btn = document.querySelector(".start_btn button");
-const home_btn = document.querySelector(".home button");
+const home_btn = document.querySelector(".home_btn button");
 const info_box = document.querySelector(".info_box");
 const exit_btn = info_box.querySelector(".buttons .quit");
 const continue_btn = info_box.querySelector(".buttons .restart");
@@ -27,6 +27,11 @@ const vol = this.querySelector('i');
   }
 });
 
+// action if home button is clicked, reload the current window
+home_btn.onclick = ()=>{
+    window.location.reload();
+}
+
 
 // action if startQuiz button is clicked, add info box to the screen
 start_btn.onclick = ()=>{
@@ -45,16 +50,10 @@ continue_btn.onclick = ()=>{
     info_box.classList.remove("enabledInfo"); //remove info box
     quiz_box.classList.add("enabledQuiz"); //add quiz box
     showQuestions(0); //showQuestions function called
-    queCounter(1); //passing parameter of 1 through queCounter function
+    questionCounter(1); //passing parameter of 1 through questionCounter function
     startTimer(30); //startTimer function called
     startTimerLine(0); //startTimerLine function called
 }
-
-// action if home button is clicked, return to start of quiz
-home_btn.onclick = ()=>{
-    window.location.reload();
-}
-
 
 let timeValue =  30;
 let que_count = 0;
@@ -77,7 +76,7 @@ restart_quiz.onclick = ()=>{
     userScore = 0;
     widthValue = 0;
     showQuestions(que_count);
-    queCounter(que_numb); //passing que_numb through queCounter function
+    questionCounter(que_numb); //passing que_numb through questionCounter function
     clearInterval(counter); //clear counter
     clearInterval(counterLine); //clear counterLine
     startTimer(timeValue); 
@@ -92,7 +91,7 @@ quit_quiz.onclick = ()=>{
 }
 
 const next_btn = document.querySelector("footer .next_btn");
-const bottom_ques_counter = document.querySelector("footer .total_questions");
+const bottom_questionCounter = document.querySelector("footer .total_questions");
 
 // if Next Que button clicked
 next_btn.onclick = ()=>{
@@ -100,7 +99,7 @@ next_btn.onclick = ()=>{
         que_count++; //increment the que_count value
         que_numb++; //increment the que_numb value
         showQuestions(que_count);
-        queCounter(que_numb); //passing que_numb through queCounter function
+        questionCounter(que_numb); //passing que_numb through questionCounter function
         clearInterval(counter); 
         clearInterval(counterLine); 
         startTimer(timeValue); //startTimer function called
@@ -131,7 +130,7 @@ function showQuestions(index){
 
     // applying onclick attribute to all available options of current question
     for(i=0; i < option.length; i++){
-        option[i].setAttribute("onclick", "optionSelected(this)");
+        option[i].setAttribute("onclick", "selectedOption(this)");
     }
 }
 // div tags created to display icons on answer presentation, post option select
@@ -139,7 +138,7 @@ let correctTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let incorrectTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
 //if user clicked on option
-function optionSelected(answer){
+function selectedOption(answer){
     clearInterval(counter); 
     clearInterval(counterLine); 
     let userAns = answer.textContent; //retrieving user selected option
@@ -212,10 +211,10 @@ function startTimerLine(time){
     }
 }
 
-function queCounter(index){
+function questionCounter(index){
      //span tags used to concat and present current question number and total question number to user
     let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
-    bottom_ques_counter.innerHTML = totalQueCounTag;  //adding new span tag inside bottom_ques_counter
+    bottom_questionCounter.innerHTML = totalQueCounTag;  //adding new span tag inside bottom_questionCounter
 }
 
 function showResults(){

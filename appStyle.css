@@ -23,14 +23,14 @@ body{
     transform: translate(-50%, -50%);
 }
 
-.home {
+.home_btn {
     position: absolute;
     top: 95%;
     left: 48%;
     transform: translate(-50%, -50%);
 }
 
-.volume_on_btn button, .home button{
+.volume_on_btn button, .home_btn button{
     font-size: 25px;
     font-weight: 500;
     color: #fff;
@@ -104,13 +104,13 @@ body{
 }
 
 .info_box .info-list .info{
-    margin: 5px 0;
     font-size: 17px;
+    margin: 5px 0;
 }
 
 .info_box .info-list .info span{
-    font-weight: 600;
     color: #007bff;
+    font-weight: 600;
 }
 .info_box .buttons{
     height: 60px;
@@ -205,8 +205,8 @@ body{
 }
 
 section{
-    padding: 25px 30px 20px 30px;
     background: #fff;
+    padding: 25px 30px 20px 30px;
 }
 
 section .question{
@@ -215,8 +215,8 @@ section .question{
 }
 
 section .option_list{
-    padding: 20px 0px;
-    display: block;   
+    display: block; 
+    padding: 20px 0px;  
 }
 
 section .option_list .option{
@@ -350,8 +350,8 @@ footer button.show{
 }
 
 .results_box .icon{
-    font-size: 100px;
     color: #007bff;
+    font-size: 100px;
     margin-bottom: 10px;
 }
 
@@ -362,14 +362,14 @@ footer button.show{
 
 .results_box .score_text span{
     display: flex;
-    margin: 10px 0;
     font-size: 18px;
     font-weight: 500;
+    margin: 10px 0;
 }
 
 .results_box .score_text span p{
-    padding: 0 4px;
     font-weight: 600;
+    padding: 0 4px;
 }
 
 .results_box .buttons{
