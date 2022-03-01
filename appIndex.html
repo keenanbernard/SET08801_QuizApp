@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fitness IQ Quiz</title>
+        <!-- Styling done through referenced style sheet -->
+        <link rel="stylesheet" href="appStyle.css">
+        <script src="https://kit.fontawesome.com/c8513be0cb.js" crossorigin="anonymous"></script>
+        <audio src="backtrack.mp3" id="quiz_song" loop="loop"></audio>
+    </head>
+    <body>
+        <!-- Defined Start Button -->
+        <div class="start_btn">
+            <button>START</button>
+        </div>
+
+                <!-- Defined Start Button -->
+        <div class="volume_on_btn">
+            <button><i class="fa-solid fa-volume-high fa-1x"></i></button>
+        </div>
+
+        <div class="home">
+            <button><i class="fa-solid fa-house fa-1x"></i></button>
+        </div>
+
+        <!-- Defined Informational Box -->
+        <div class="info_box">
+            <div class="info-title"><span>Fitness IQ Quiz: Are you more knowledgeable than the average person about fitness?</span></div>
+            <div class="info-list">
+                <div class="info"><span>Rules:</span></div>
+                <div class="info">1. You will only have <span>30 seconds</span> to answer each question.</div>
+                <div class="info">2. Once you select your answer, it can't be undone.</div>
+                <div class="info">3. You can't select any option once the timer runs out.</div>
+                <div class="info">Good Luck!</div>
+            </div>
+            <div class="buttons">
+                <button class="quit">Exit Quiz</button>
+                <button class="restart">Continue</button>
+            </div>
+        </div>
+
+        <!-- Defined Quiz Box to display questions -->
+        <div class="quiz_box">
+            <!-- Header of Quiz Box to display timer and timer line -->
+            <header>
+                <div class="title">Fitness IQ Quiz</div>
+                <div class="timer">
+                    <div class="time_left_text">Time Left</div>
+                    <div class="timer_sec">30</div>
+                </div>
+                <div class="timer_line"></div>
+            </header>
+            <section>
+                <div class="question">
+                </div>
+                <div class="option_list">
+                </div>
+            </section>
+            <!-- Footer of Quiz Box to display number of quesitons and navigational button -->
+            <footer>
+                <div class="total_questions"></div>
+                <button class="next_btn">Next</button>
+            </footer>
+        </div>
+
+        <!-- Defined Results Box presented at end of quiz -->
+        <div class="results_box">
+            <div class="icon">
+                <i class=""></i>
+            </div>
+            <div class="complete_text">You've completed the Quiz!</div>
+            <div class="score_text"></div>
+            <div class="buttons">
+                <button class="restart">Retry</button>
+                <button class="quit">Quit</button>
+            </div>
+        </div>
+
+        <!-- Imported Questions used within html application -->
+        <script src="appQuestions.js"></script>
+
+        <!-- Function to compile quiz questions, mark answers and app functionality -->
+        <script src="appFunctions.js"></script>
+    </body>
+</html>
