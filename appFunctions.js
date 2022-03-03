@@ -23,9 +23,10 @@ const vol = this.querySelector('i');
      } else {
      vol.classList.remove('fa-volume-xmark');
         vol.classList.add('fa-volume-high');
-        document.getElementById("quiz_song").volume = 0.1;
+        document.getElementById("quiz_song").volume = 0.5;
   }
 });
+
 
 // action if home button is clicked, reload the current window
 home_btn.onclick = ()=>{
@@ -36,14 +37,17 @@ home_btn.onclick = ()=>{
 // action if startQuiz button is clicked, add info box to the screen
 start_btn.onclick = ()=>{
     info_box.classList.add("enabledInfo"); 
+    document.getElementById("quiz_song").volume = 0.5;
     document.getElementById("quiz_song").play();
 }
+
 
 // action if exitQuiz button is clicked, remove info box from the screen
 exit_btn.onclick = ()=>{
     info_box.classList.remove("enabledInfo");
     document.getElementById("quiz_song").load();
 }
+
 
 // actions if continueQuiz button is clicked
 continue_btn.onclick = ()=>{
@@ -53,7 +57,9 @@ continue_btn.onclick = ()=>{
     questionCounter(1); //passing parameter of 1 through questionCounter function
     startTimer(30); //startTimer function called
     startTimerLine(0); //startTimerLine function called
+    updateItems(1); //updateItems function called
 }
+
 
 let timeValue =  30;
 let que_count = 0;
@@ -63,8 +69,10 @@ let counter;
 let counterLine;
 let widthValue = 0;
 
+
 const restart_quiz = results_box.querySelector(".buttons .restart");
 const quit_quiz = results_box.querySelector(".buttons .quit");
+
 
 // if restartQuiz button clicked
 restart_quiz.onclick = ()=>{
@@ -81,17 +89,21 @@ restart_quiz.onclick = ()=>{
     clearInterval(counterLine); //clear counterLine
     startTimer(timeValue); 
     startTimerLine(widthValue);
+    updateItems(que_numb); //passing que_numb through updateItems function
     timerText.textContent = "Time Left"; //modifying the text used for timer
     next_btn.classList.remove("show"); //hide the next button
 }
+
 
 // if quitQuiz button is clicked, reload the current window
 quit_quiz.onclick = ()=>{
     window.location.reload();
 }
 
+
 const next_btn = document.querySelector("footer .next_btn");
 const bottom_questionCounter = document.querySelector("footer .total_questions");
+
 
 // if Next Que button clicked
 next_btn.onclick = ()=>{
@@ -106,12 +118,40 @@ next_btn.onclick = ()=>{
         startTimerLine(widthValue); //startTimerLine function called
         timerText.textContent = "Time Left";
         next_btn.classList.remove("show");
+        updateItems(que_numb);
     }else{
         clearInterval(counter);
         clearInterval(counterLine);
         showResults(); //showResults function called
     }
 }
+
+
+// function used to update quiz box title
+function updateItems(que){
+    const quizTitle = quiz_box.querySelector(".title");
+    const QuizButton = quiz_box.querySelector(".next_btn");
+
+    if(que <= 5){
+        let titleText = 'Level 1: Easy'
+        quizTitle.innerHTML = titleText;
+    } else if (que >= 6 && que <= 10 ){
+        let titleText = 'Level 2: Medium'
+        quizTitle.innerHTML = titleText;
+    } else {
+        let titleText = 'Level 3: Hard'
+        quizTitle.innerHTML = titleText;
+    }
+
+    if(que == 15){
+        let buttonText = 'See Results'
+        QuizButton.innerHTML = buttonText;
+    } else {
+        let buttonText = 'Next'
+        QuizButton.innerHTML = buttonText;
+    }
+}
+
 
 // function used to retrieve questions and options from array (stored in appQuestions)
 function showQuestions(index){
@@ -133,9 +173,12 @@ function showQuestions(index){
         option[i].setAttribute("onclick", "selectedOption(this)");
     }
 }
+
+
 // div tags created to display icons on answer presentation, post option select
 let correctTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let incorrectTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
+
 
 //if user clicked on option
 function selectedOption(answer){
@@ -171,6 +214,7 @@ function selectedOption(answer){
     next_btn.classList.add("show"); //display the next button after option is selected
 }
 
+
 function startTimer(time){
     counter = setInterval(timer, 1000);
     function timer(){
@@ -200,6 +244,7 @@ function startTimer(time){
     }
 }
 
+
 function startTimerLine(time){
     counterLine = setInterval(timer, 32);
     function timer(){
@@ -211,11 +256,13 @@ function startTimerLine(time){
     }
 }
 
+
 function questionCounter(index){
      //span tags used to concat and present current question number and total question number to user
     let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
     bottom_questionCounter.innerHTML = totalQueCounTag;  //adding new span tag inside bottom_questionCounter
 }
+
 
 function showResults(){
     info_box.classList.remove("enabledInfo"); 
@@ -225,14 +272,8 @@ function showResults(){
 
     let avgScore = Math.round((userScore / questions.length) * 100);
 
-    if (avgScore > 66){ // if user scored more than 60%
-        //span tags used to concat and present user score number, total question and score text to user
-        let scoreTag = '<span>Your Fitness IQ Score is <p>'+ userScore+'/'+ questions.length +'</p><p>('+ avgScore +'%)</p> is above average.</span>';
-        scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
-    }
-    else{ // if user scored less than 66
-        let scoreTag = '<span>Your Fitness IQ Score is <p>'+ userScore+'/'+ questions.length +'</p> <p>('+ avgScore +'%)</p> is below average.</span>';
-        scoreText.innerHTML = scoreTag;
-    }
-}
+    //span tags used to concat and present user score number, total question and score text to user
+    let scoreTag = '<span>Your Fitness IQ Score is <p>'+ userScore+'/'+ questions.length +'</p><p>('+ avgScore +'%)</p></span>';
+    scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
 
+}
