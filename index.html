@@ -4,31 +4,26 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Fitness IQ Quiz</title>
-        <!-- Styling done through referenced style sheet -->
         <link rel="stylesheet" href="appStyle.css">
         <script src="https://kit.fontawesome.com/c8513be0cb.js" crossorigin="anonymous"></script>
         <audio src="Itachi Uchiha.webm" id="quiz_song" loop="loop"></audio>
     </head>
     <body>
-        <!-- Defined home Button -->
-        <div class="home_btn">
+        <div class="hmeButton">
             <button><i class="fa-solid fa-house fa-1x"></i></button>
         </div>
 
-        <!-- Defined volume Button -->
-        <div class="volume_on_btn">
+        <div class="vlmButton">
             <button><i class="fa-solid fa-volume-high fa-1x"></i></button>
         </div>
 
-        <!-- Defined Start Button -->
-        <div class="start_btn">
+        <div class="strtButton">
             <button>START</button>
         </div>
 
-        <!-- Defined Informational Box -->
-        <div class="info_box">
-            <div class="info-title"><span>Fitness IQ Quiz: Are you more knowledgeable than the average person about fitness?</span></div>
-            <div class="info-list">
+        <div class="infoBox">
+            <div class="infoTitle"><span>Fitness IQ Quiz: Are you more knowledgeable than the average person about fitness?</span></div>
+            <div class="infoList">
                 <div class="info"><span>Rules:</span></div>
                 <div class="info">1. You will only have <span>30 seconds</span> to answer each question.</div>
                 <div class="info">2. Once you select your answer, it can't be undone.</div>
@@ -41,9 +36,7 @@
             </div>
         </div>
 
-        <!-- Defined Quiz Box to display questions -->
-        <div class="quiz_box">
-            <!-- Header of Quiz Box to display timer and timer line -->
+        <div class="quizBox">
             <header>
                 <div class="title"></div>
                 <div class="timer">
@@ -56,15 +49,13 @@
                 <div class="question"></div>
                 <div class="option_list"></div>
             </section>
-            <!-- Footer of Quiz Box to display number of quesitons and navigational button -->
             <footer>
                 <div class="total_questions"></div>
                 <button class="next_btn">Next</button>
             </footer>
         </div>
 
-        <!-- Defined Results Box presented at end of quiz -->
-        <div class="results_box">
+        <div class="resultsBox">
             <div class="icon">
                 <i class=""></i>
             </div>

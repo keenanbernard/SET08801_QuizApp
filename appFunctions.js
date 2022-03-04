@@ -1,19 +1,19 @@
 //selecting all required elements
-const start_btn = document.querySelector(".start_btn button");
-const home_btn = document.querySelector(".home_btn button");
-const info_box = document.querySelector(".info_box");
-const exit_btn = info_box.querySelector(".buttons .quit");
-const continue_btn = info_box.querySelector(".buttons .restart");
-const quiz_box = document.querySelector(".quiz_box");
+const start_btn = document.querySelector(".strtButton button");
+const home_btn = document.querySelector(".hmeButton button");
+const infoBox = document.querySelector(".infoBox");
+const exit_btn = infoBox.querySelector(".buttons .quit");
+const continue_btn = infoBox.querySelector(".buttons .restart");
+const quizBox = document.querySelector(".quizBox");
 const timer_line = document.querySelector("header .timer_line");
 const timerText = document.querySelector(".timer .time_left_text");
 const timerCount = document.querySelector(".timer .timer_sec");
 const option_list = document.querySelector(".option_list");
-const results_box = document.querySelector(".results_box");
+const resultsBox = document.querySelector(".resultsBox");
 
 
 // action if volume button is selected to adjust setting
-document.querySelector(".volume_on_btn button").addEventListener('click', function() {
+document.querySelector(".vlmButton button").addEventListener('click', function() {
 const vol = this.querySelector('i');
 
     if (vol.classList.contains('fa-volume-high')) {
@@ -36,7 +36,7 @@ home_btn.onclick = ()=>{
 
 // action if startQuiz button is clicked, add info box to the screen
 start_btn.onclick = ()=>{
-    info_box.classList.add("enabledInfo"); 
+    infoBox.classList.add("enabledInfo"); 
     document.getElementById("quiz_song").volume = 0.5;
     document.getElementById("quiz_song").play();
 }
@@ -44,15 +44,15 @@ start_btn.onclick = ()=>{
 
 // action if exitQuiz button is clicked, remove info box from the screen
 exit_btn.onclick = ()=>{
-    info_box.classList.remove("enabledInfo");
+    infoBox.classList.remove("enabledInfo");
     document.getElementById("quiz_song").load();
 }
 
 
 // actions if continueQuiz button is clicked
 continue_btn.onclick = ()=>{
-    info_box.classList.remove("enabledInfo"); //remove info box
-    quiz_box.classList.add("enabledQuiz"); //add quiz box
+    infoBox.classList.remove("enabledInfo"); //remove info box
+    quizBox.classList.add("enabledQuiz"); //add quiz box
     showQuestions(0); //showQuestions function called
     questionCounter(1); //passing parameter of 1 through questionCounter function
     startTimer(30); //startTimer function called
@@ -70,14 +70,14 @@ let counterLine;
 let widthValue = 0;
 
 
-const restart_quiz = results_box.querySelector(".buttons .restart");
-const quit_quiz = results_box.querySelector(".buttons .quit");
+const restart_quiz = resultsBox.querySelector(".buttons .restart");
+const quit_quiz = resultsBox.querySelector(".buttons .quit");
 
 
 // if restartQuiz button clicked
 restart_quiz.onclick = ()=>{
-    quiz_box.classList.add("enabledQuiz"); 
-    results_box.classList.remove("enabledResults"); 
+    quizBox.classList.add("enabledQuiz"); 
+    resultsBox.classList.remove("enabledResults"); 
     timeValue = 30; 
     que_count = 0;
     que_numb = 1;
@@ -129,8 +129,8 @@ next_btn.onclick = ()=>{
 
 // function used to update quiz box title
 function updateItems(que){
-    const quizTitle = quiz_box.querySelector(".title");
-    const QuizButton = quiz_box.querySelector(".next_btn");
+    const quizTitle = quizBox.querySelector(".title");
+    const QuizButton = quizBox.querySelector(".next_btn");
 
     if(que <= 5){
         let titleText = 'Level 1: Easy'
@@ -265,10 +265,10 @@ function questionCounter(index){
 
 
 function showResults(){
-    info_box.classList.remove("enabledInfo"); 
-    quiz_box.classList.remove("enabledQuiz"); 
-    results_box.classList.add("enabledResults");
-    const scoreText = results_box.querySelector(".score_text");
+    infoBox.classList.remove("enabledInfo"); 
+    quizBox.classList.remove("enabledQuiz"); 
+    resultsBox.classList.add("enabledResults");
+    const scoreText = resultsBox.querySelector(".score_text");
 
     let avgScore = Math.round((userScore / questions.length) * 100);
 
