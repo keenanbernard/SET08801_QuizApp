@@ -1,16 +1,15 @@
-//selecting all required elements
-const start_btn = document.querySelector(".strtButton button");
+//selecting all required elements using classes
 const home_btn = document.querySelector(".hmeButton button");
+const start_btn = document.querySelector(".strtButton button");
 const infoBox = document.querySelector(".infoBox");
 const exit_btn = infoBox.querySelector(".buttons .quit");
 const continue_btn = infoBox.querySelector(".buttons .restart");
 const quizBox = document.querySelector(".quizBox");
-const timer_line = document.querySelector("header .timer_line");
+const option_list = document.querySelector(".option_list");
 const timerText = document.querySelector(".timer .time_left_text");
 const timerCount = document.querySelector(".timer .timer_sec");
-const option_list = document.querySelector(".option_list");
+const timer_line = document.querySelector("header .timer_line");
 const resultsBox = document.querySelector(".resultsBox");
-
 
 // action if volume button is selected to adjust setting
 document.querySelector(".vlmButton button").addEventListener('click', function() {
@@ -57,9 +56,8 @@ continue_btn.onclick = ()=>{
     questionCounter(1); //passing parameter of 1 through questionCounter function
     startTimer(30); //startTimer function called
     startTimerLine(0); //startTimerLine function called
-    updateItems(1); //updateItems function called
+    updateInfo(1); //passing parameter of 1 through updateInfo function
 }
-
 
 let timeValue =  30;
 let que_count = 0;
@@ -69,10 +67,8 @@ let counter;
 let counterLine;
 let widthValue = 0;
 
-
 const restart_quiz = resultsBox.querySelector(".buttons .restart");
 const quit_quiz = resultsBox.querySelector(".buttons .quit");
-
 
 // if restartQuiz button clicked
 restart_quiz.onclick = ()=>{
@@ -89,7 +85,7 @@ restart_quiz.onclick = ()=>{
     clearInterval(counterLine); //clear counterLine
     startTimer(timeValue); 
     startTimerLine(widthValue);
-    updateItems(que_numb); //passing que_numb through updateItems function
+    updateInfo(que_numb); //passing que_numb through updateInfo function
     timerText.textContent = "Time Left"; //modifying the text used for timer
     next_btn.classList.remove("show"); //hide the next button
 }
@@ -100,35 +96,33 @@ quit_quiz.onclick = ()=>{
     window.location.reload();
 }
 
-
 const next_btn = document.querySelector("footer .next_btn");
 const bottom_questionCounter = document.querySelector("footer .total_questions");
 
+// function used to retrieve questions and options from array (stored in appQuestions)
+function showQuestions(index){
+    const question = document.querySelector(".question");
 
-// if Next Que button clicked
-next_btn.onclick = ()=>{
-    if(que_count < questions.length - 1){ //if question count is less than total question length
-        que_count++; //increment the que_count value
-        que_numb++; //increment the que_numb value
-        showQuestions(que_count);
-        questionCounter(que_numb); //passing que_numb through questionCounter function
-        clearInterval(counter); 
-        clearInterval(counterLine); 
-        startTimer(timeValue); //startTimer function called
-        startTimerLine(widthValue); //startTimerLine function called
-        timerText.textContent = "Time Left";
-        next_btn.classList.remove("show");
-        updateItems(que_numb);
-    }else{
-        clearInterval(counter);
-        clearInterval(counterLine);
-        showResults(); //showResults function called
+    //div and span tags used to concat and present questions and its options by passing the value through an array index
+    let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
+    let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
+    + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
+    + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
+    + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
+    question.innerHTML = que_tag; //adding new span tag inside que_tag
+    option_list.innerHTML = option_tag; //adding new div tag inside option_tag
+    
+    const option = option_list.querySelectorAll(".option");
+
+    // applying onclick attribute to all available options of current question
+    for(i=0; i < option.length; i++){
+        option[i].setAttribute("onclick", "selectedOption(this)");
     }
 }
 
 
 // function used to update quiz box title
-function updateItems(que){
+function updateInfo(que){
     const quizTitle = quizBox.querySelector(".title");
     const QuizButton = quizBox.querySelector(".next_btn");
 
@@ -153,32 +147,15 @@ function updateItems(que){
 }
 
 
-// function used to retrieve questions and options from array (stored in appQuestions)
-function showQuestions(index){
-    const question = document.querySelector(".question");
-
-    //div and span tags used to concat and present questions and its options by passing the value through an array index
-    let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
-    let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
-    question.innerHTML = que_tag; //adding new span tag inside que_tag
-    option_list.innerHTML = option_tag; //adding new div tag inside option_tag
-    
-    const option = option_list.querySelectorAll(".option");
-
-    // applying onclick attribute to all available options of current question
-    for(i=0; i < option.length; i++){
-        option[i].setAttribute("onclick", "selectedOption(this)");
-    }
+function questionCounter(index){
+    //span tags used to concat and present current question number and total question number to user
+   let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
+   bottom_questionCounter.innerHTML = totalQueCounTag;  //adding new span tag inside bottom_questionCounter
 }
-
 
 // div tags created to display icons on answer presentation, post option select
 let correctTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let incorrectTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
-
 
 //if user clicked on option
 function selectedOption(answer){
@@ -212,6 +189,28 @@ function selectedOption(answer){
         option_list.children[i].classList.add("disabled"); //after choice selection, options are disabled
     }
     next_btn.classList.add("show"); //display the next button after option is selected
+}
+
+
+// if Next Que button clicked
+next_btn.onclick = ()=>{
+    if(que_count < questions.length - 1){ //if question count is less than total question length
+        que_count++; //increment the que_count value
+        que_numb++; //increment the que_numb value
+        showQuestions(que_count);
+        questionCounter(que_numb); //passing que_numb through questionCounter function
+        clearInterval(counter); 
+        clearInterval(counterLine); 
+        startTimer(timeValue); //startTimer function called
+        startTimerLine(widthValue); //startTimerLine function called
+        timerText.textContent = "Time Left";
+        next_btn.classList.remove("show");
+        updateInfo(que_numb);
+    }else{
+        clearInterval(counter);
+        clearInterval(counterLine);
+        showResults(); //showResults function called
+    }
 }
 
 
@@ -254,13 +253,6 @@ function startTimerLine(time){
             clearInterval(counterLine); //clear counterLine
         }
     }
-}
-
-
-function questionCounter(index){
-     //span tags used to concat and present current question number and total question number to user
-    let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
-    bottom_questionCounter.innerHTML = totalQueCounTag;  //adding new span tag inside bottom_questionCounter
 }
 
 
