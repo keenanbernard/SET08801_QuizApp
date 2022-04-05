@@ -7,7 +7,7 @@
 }
 
 body{
-    background: #007bff;
+    background: #FEF5EF;
 }
 
 ::selection{
@@ -33,32 +33,32 @@ body{
 .hmeButton button{
     font-size: 25px;
     font-weight: 500;
-    color: #fff;
+    color: #6a0dad;
     padding: 15px 30px;
     outline: none;
     border: none;
     border-radius: 5px;
-    background: #007bff;
+    background: #FEF5EF;
     cursor: pointer;
 }
 
 .buttons button.restart{
     color: #fff;
-    background: #007bff;
+    background: #6a0dad;
 }
 
 .buttons button.restart:hover{
-    background: #0263ca;
+    background: #6a0dad;
 }
 
 .buttons button.quit{
-    color: #007bff;
+    color: #6a0dad;
     background: #fff;
 }
 
 .buttons button.quit:hover{
     color: #fff;
-    background: #007bff;
+    background: #6a0dad;
 }
 
 .strtButton,
@@ -86,12 +86,13 @@ body{
 .strtButton button{
     font-size: 25px;
     font-weight: 500;
-    color: #007bff;
+    color: #FFFF;
     padding: 15px 30px;
     outline: none;
     border: none;
     border-radius: 5px;
-    background: #fff;
+    background: #6a0dad;
+    border-color: #6a0dad;
     cursor: pointer;
 }
 
@@ -127,7 +128,7 @@ body{
 }
 
 .infoBox .infoList .info span{
-    color: #007bff;
+    color: #6a0dad;
     font-weight: 600;
 }
 .infoBox .buttons{
@@ -149,7 +150,7 @@ body{
     border: none;
     outline: none;
     border-radius: 5px;
-    border: 1px solid #007bff;
+    border: 1px solid #6a0dad;
     transition: all 0.3s ease;
 }
 
@@ -219,7 +220,7 @@ body{
     bottom: 0px;
     left: 0px;
     height: 3px;
-    background: #007bff;
+    background: #6a0dad;
 }
 
 section{
@@ -333,8 +334,8 @@ footer button{
     outline: none;
     color: #fff;
     border-radius: 5px;
-    background: #007bff;
-    border: 1px solid #007bff;
+    background: #6a0dad;
+    border: 1px solid #6a0dad;
     line-height: 10px;
     opacity: 0;
     pointer-events: none;
@@ -343,7 +344,7 @@ footer button{
 }
 
 footer button:hover{
-    background: #0263ca;
+    background: #8d10e6;
 }
 
 footer button.show{
@@ -368,7 +369,7 @@ footer button.show{
 }
 
 .resultsBox .icon{
-    color: #007bff;
+    color: #6a0dad;
     font-size: 100px;
     margin-bottom: 10px;
 }
@@ -410,6 +411,6 @@ footer button.show{
     border: none;
     outline: none;
     border-radius: 5px;
-    border: 1px solid #007bff;
+    border: 1px solid #6a0dad;
     transition: all 0.3s ease;
 }
