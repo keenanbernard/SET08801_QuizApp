@@ -1,121 +1,121 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 body{
     background: #FEF5EF;
 }
 
-::selection{
-    color: #fff;
+::selection {
     background: #6a0dad;
+    color: #fff;
 }
 
-.vlmButton {
+.vlmButton{
+    left: 53%;
     position: absolute;
     top: 95%;
-    left: 53%;
     transform: translate(-50%, -50%);
 }
 
-.hmeButton {
+.hmeButton{
+    left: 47%;
     position: absolute;
     top: 95%;
-    left: 47%;
     transform: translate(-50%, -50%);
 }
 
 .vlmButton button,
 .hmeButton button{
-    font-size: 25px;
-    font-weight: 500;
-    color: #6a0dad;
-    padding: 15px 30px;
-    outline: none;
     border: none;
     border-radius: 5px;
     background: #FEF5EF;
-    cursor: pointer;
-}
-
-.buttons button.restart{
-    color: #fff;
-    background: #6a0dad;
-}
-
-.buttons button.restart:hover{
-    background: #6a0dad;
-}
-
-.buttons button.quit{
     color: #6a0dad;
-    background: #fff;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 15px 30px;
+    outline: none;
 }
 
-.buttons button.quit:hover{
-    color: #fff;
+.buttons button.restartButton{
     background: #6a0dad;
+    color: #fff;
+}
+
+.buttons button.restartButton:hover{
+    background: #6a0dad;
+}
+
+.buttons button.quitButton{
+    background: #6a0dad;
+    color: #fff;
+}
+
+.buttons button.quitButton:hover{
+    background: #6a0dad;
+    color: #fff;
 }
 
 .strtButton,
 .infoBox,
 .quizBox,
 .resultsBox{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    left: 50%;
     position: absolute;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
-                0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .infoBox.enabledInfo,
 .quizBox.enabledQuiz,
 .resultsBox.enabledResults{
     opacity: 1;
-    z-index: 5;
     pointer-events: auto;
     transform: translate(-50%, -50%) scale(1);
     width: 950px;
+    z-index: 5;
 }
 
 .strtButton button{
-    font-size: 25px;
-    font-weight: 500;
-    color: #FFFF;
-    padding: 15px 30px;
-    outline: none;
-    border: none;
     border-radius: 5px;
     background: #6a0dad;
+    border: none;
     border-color: #6a0dad;
+    color: #FFFF;
     cursor: pointer;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 15px 30px;
+    outline: none;
 }
 
 .infoBox{
-    width: 540px;
     background: #fff;
     border-radius: 5px;
     transform: translate(-50%, -50%) scale(0.9);
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
+    width: 540px;
 }
 
 .infoBox .infoTitle{
-    height: 60px;
-    width: 100%;
-    border-bottom: 1px solid lightgrey;
-    display: flex;
     align-items: center;
-    padding: 0 30px;
+    border-bottom: 1px solid lightgrey;
     border-radius: 5px 5px 0 0;
+    display: flex;
     font-size: 20px;
     font-weight: 600;
+    height: 60px;
+    padding: 0 30px;
+    width: 100%;
 }
 
 .infoBox .infoList{
@@ -131,50 +131,51 @@ body{
     color: #6a0dad;
     font-weight: 600;
 }
+
 .infoBox .buttons{
-    height: 60px;
-    display: flex;
     align-items: center;
+    border-top: 1px solid lightgrey;
+    display: flex;
+    height: 60px;
     justify-content: flex-end;
     padding: 0 30px;
-    border-top: 1px solid lightgrey;
 }
 
 .infoBox .buttons button{
-    margin: 0 5px;
-    height: 40px;
-    width: 100px;
+    border-radius: 5px;
+    border: none;
+    border: 1px solid #6a0dad;
+    cursor: pointer;
     font-size: 16px;
     font-weight: 500;
-    cursor: pointer;
-    border: none;
+    height: 40px;
+    margin: 0 5px;
     outline: none;
-    border-radius: 5px;
-    border: 1px solid #6a0dad;
     transition: all 0.3s ease;
+    width: 100px;
 }
 
 .quizBox{
-    width: 550px;
     background: #fff;
     border-radius: 5px;
-    transform: translate(-50%, -50%) scale(0.9);
     opacity: 0;
     pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.9);
     transition: all 0.3s ease;
+    width: 550px;
 }
 
 .quizBox header{
-    position: relative;
-    z-index: 2;
-    height: 70px;
-    padding: 0 30px;
+    align-items: center;
     background: #fff;
     border-radius: 5px 5px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.1);
+    display: flex;
+    height: 70px;
+    justify-content: space-between;
+    padding: 0 30px;
+    position: relative;
+    z-index: 2;
 }
 
 .quizBox header .title{
@@ -216,11 +217,12 @@ body{
 }
 
 .quizBox header .timer_line{
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    height: 3px;
     background: #6a0dad;
+    bottom: 0px;
+    height: 3px;
+    left: 0px;
+    position: absolute;
+
 }
 
 section{
@@ -239,17 +241,17 @@ section .option_list{
 }
 
 section .option_list .option{
+    align-items: center;
     background: aliceblue;
     border: 1px solid #84c5fe;
     border-radius: 5px;
-    padding: 8px 15px;
-    font-size: 17px;
-    margin-bottom: 15px;
     cursor: pointer;
-    transition: all 0.3s ease;
     display: flex;
-    align-items: center;
+    font-size: 17px;
     justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 8px 15px;
+    transition: all 0.3s ease;
 }
 
 section .option_list .option:last-child{
@@ -279,16 +281,17 @@ section .option_list .option.disabled{
 }
 
 section .option_list .option .icon{
-    height: 26px;
-    width: 26px;
     border: 2px solid transparent;
     border-radius: 50%;
-    text-align: center;
     font-size: 13px;
-    pointer-events: none;
-    transition: all 0.3s ease;
+    height: 26px;
     line-height: 24px;
+    pointer-events: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 26px;
 }
+
 .option_list .option .icon.tick{
     color: #23903c;
     border-color: #23903c;
@@ -302,12 +305,12 @@ section .option_list .option .icon{
 }
 
 footer{
-    height: 60px;
-    padding: 0 30px;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
     border-top: 1px solid lightgrey;
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    padding: 0 30px;
 }
 
 footer .total_questions span{
@@ -325,19 +328,19 @@ footer .total_questions span p:first-child{
 }
 
 footer button{
-    height: 40px;
-    padding: 0 13px;
+    background: #6a0dad;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid #6a0dad;
+    cursor: pointer;
+    color: #fff;
     font-size: 18px;
     font-weight: 400;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    color: #fff;
-    border-radius: 5px;
-    background: #6a0dad;
-    border: 1px solid #6a0dad;
+    height: 40px;
     line-height: 10px;
+    outline: none;
     opacity: 0;
+    padding: 0 13px;
     pointer-events: none;
     transform: scale(0.95);
     transition: all 0.3s ease;
@@ -354,18 +357,18 @@ footer button.show{
 }
 
 .resultsBox{
+    align-items: center;
     background: #fff;
     border-radius: 5px;
     display: flex;
-    padding: 25px 30px;
-    width: 450px;
-    align-items: center;
     flex-direction: column;
     justify-content: center;
-    transform: translate(-50%, -50%) scale(0.9);
     opacity: 0;
     pointer-events: none;
+    padding: 25px 30px;
+    transform: translate(-50%, -50%) scale(0.9);
     transition: all 0.3s ease;
+    width: 450px;
 }
 
 .resultsBox .icon{
@@ -374,7 +377,7 @@ footer button.show{
     margin-bottom: 10px;
 }
 
-.resultsBox .complete_text{
+.resultsBox .completion_text{
     font-size: 25px;
     font-weight: 500;
 }
@@ -402,15 +405,15 @@ footer button.show{
 }
 
 .resultsBox .buttons button{
+    border-radius: 5px;
+    border: none;
+    border: 1px solid #6a0dad;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
     margin: 0 10px;
     height: 45px;
     padding: 0 20px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
     outline: none;
-    border-radius: 5px;
-    border: 1px solid #6a0dad;
     transition: all 0.3s ease;
 }

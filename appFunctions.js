@@ -2,8 +2,8 @@
 const home_btn = document.querySelector(".hmeButton button");
 const start_btn = document.querySelector(".strtButton button");
 const infoBox = document.querySelector(".infoBox");
-const exit_btn = infoBox.querySelector(".buttons .quit");
-const continue_btn = infoBox.querySelector(".buttons .restart");
+const exit_btn = infoBox.querySelector(".buttons .quitButton");
+const continue_btn = infoBox.querySelector(".buttons .restartButton");
 const quizBox = document.querySelector(".quizBox");
 const option_list = document.querySelector(".option_list");
 const timerText = document.querySelector(".timer .time_left_text");
@@ -11,8 +11,9 @@ const timerCount = document.querySelector(".timer .timer_sec");
 const timer_line = document.querySelector("header .timer_line");
 const resultsBox = document.querySelector(".resultsBox");
 
+
 // action if volume button is selected to adjust setting
-document.querySelector(".vlmButton button").addEventListener('click', function() {
+document.querySelector(".vlmButton button").addEventListener('click', function(){
 const vol = this.querySelector('i');
 
     if (vol.classList.contains('fa-volume-high')) {
@@ -59,35 +60,37 @@ continue_btn.onclick = ()=>{
     updateInfo(1); //passing parameter of 1 through updateInfo function
 }
 
-let timeValue =  30;
-let que_count = 0;
-let que_numb = 1;
-let userScore = 0;
+
 let counter;
 let counterLine;
+let queCount = 0;
+let queNumb = 1;
+let timeValue =  30;
+let userScore = 0;
 let widthValue = 0;
 
-const restart_quiz = resultsBox.querySelector(".buttons .restart");
-const quit_quiz = resultsBox.querySelector(".buttons .quit");
+const restart_quiz = resultsBox.querySelector(".buttons .restartButton");
+const quit_quiz = resultsBox.querySelector(".buttons .quitButton");
+
 
 // if restartQuiz button clicked
 restart_quiz.onclick = ()=>{
     quizBox.classList.add("enabledQuiz"); 
     resultsBox.classList.remove("enabledResults"); 
+    queCount = 0;
+    queNumb = 1;
     timeValue = 30; 
-    que_count = 0;
-    que_numb = 1;
     userScore = 0;
     widthValue = 0;
-    showQuestions(que_count);
-    questionCounter(que_numb); //passing que_numb through questionCounter function
+    showQuestions(queCount);
+    questionCounter(queNumb); //passing queNumb through questionCounter function
     clearInterval(counter); //clear counter
     clearInterval(counterLine); //clear counterLine
     startTimer(timeValue); 
     startTimerLine(widthValue);
-    updateInfo(que_numb); //passing que_numb through updateInfo function
+    updateInfo(queNumb); //passing queNumb through updateInfo function
     timerText.textContent = "Time Left"; //modifying the text used for timer
-    next_btn.classList.remove("show"); //hide the next button
+    nextButton.classList.remove("show"); //hide the next button
 }
 
 
@@ -96,8 +99,10 @@ quit_quiz.onclick = ()=>{
     window.location.reload();
 }
 
-const next_btn = document.querySelector("footer .next_btn");
+
+const nextButton = document.querySelector("footer .nextButton");
 const bottom_questionCounter = document.querySelector("footer .total_questions");
+
 
 // function used to retrieve questions and options from array (stored in appQuestions)
 function showQuestions(index){
@@ -124,7 +129,7 @@ function showQuestions(index){
 // function used to update quiz box title
 function updateInfo(que){
     const quizTitle = quizBox.querySelector(".title");
-    const QuizButton = quizBox.querySelector(".next_btn");
+    const QuizButton = quizBox.querySelector(".nextButton");
 
     if(que <= 5){
         let titleText = 'Level 1: Easy'
@@ -153,16 +158,18 @@ function questionCounter(index){
    bottom_questionCounter.innerHTML = totalQueCounTag;  //adding new span tag inside bottom_questionCounter
 }
 
+
 // div tags created to display icons on answer presentation, post option select
 let correctTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let incorrectTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
+
 
 //if user clicked on option
 function selectedOption(answer){
     clearInterval(counter); 
     clearInterval(counterLine); 
     let userAns = answer.textContent; //retrieving user selected option
-    let correcAns = questions[que_count].answer; //retrieving correct answer from question array
+    let correcAns = questions[queCount].answer; //retrieving correct answer from question array
     const allOptions = option_list.children.length; //retrieving all option items
     
     if(userAns == correcAns){ //if user selected option is equal to array's correct answer
@@ -188,24 +195,24 @@ function selectedOption(answer){
     for(i=0; i < allOptions; i++){
         option_list.children[i].classList.add("disabled"); //after choice selection, options are disabled
     }
-    next_btn.classList.add("show"); //display the next button after option is selected
+    nextButton.classList.add("show"); //display the next button after option is selected
 }
 
 
 // if Next Que button clicked
-next_btn.onclick = ()=>{
-    if(que_count < questions.length - 1){ //if question count is less than total question length
-        que_count++; //increment the que_count value
-        que_numb++; //increment the que_numb value
-        showQuestions(que_count);
-        questionCounter(que_numb); //passing que_numb through questionCounter function
+nextButton.onclick = ()=>{
+    if(queCount < questions.length - 1){ //if question count is less than total question length
+        queCount++; //increment the queCount value
+        queNumb++; //increment the queNumb value
+        showQuestions(queCount);
+        questionCounter(queNumb); //passing queNumb through questionCounter function
         clearInterval(counter); 
         clearInterval(counterLine); 
         startTimer(timeValue); //startTimer function called
         startTimerLine(widthValue); //startTimerLine function called
         timerText.textContent = "Time Left";
-        next_btn.classList.remove("show");
-        updateInfo(que_numb);
+        nextButton.classList.remove("show");
+        updateInfo(queNumb);
     }else{
         clearInterval(counter);
         clearInterval(counterLine);
@@ -227,7 +234,7 @@ function startTimer(time){
             clearInterval(counter);
             timerText.textContent = "Time Off";
             const allOptions = option_list.children.length;
-            let correcAns = questions[que_count].answer; //getting correct answer from array
+            let correcAns = questions[queCount].answer; //getting correct answer from array
             for(i=0; i < allOptions; i++){
                 if(option_list.children[i].textContent == correcAns){ 
                     option_list.children[i].setAttribute("class", "option correct"); 
@@ -238,7 +245,7 @@ function startTimer(time){
             for(i=0; i < allOptions; i++){
                 option_list.children[i].classList.add("disabled");
             }
-            next_btn.classList.add("show");
+            nextButton.classList.add("show");
         }
     }
 }
@@ -269,3 +276,50 @@ function showResults(){
     scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
 
 }
+
+/*
+
+let scores = []
+
+const addScore = (score)=>{
+    score.preventDefault();  //to stop the form submitting
+    let qscore = {
+        id: Date.now(),
+        result: score
+    }
+    scores.push(qscore);
+    document.forms[0].reset(); // to clear the form for the next entries
+    //document.querySelector('form').reset();
+
+    //for display purposes only
+    console.warn('added' , {scores} );
+    let pre = document.querySelector('#msg pre');
+    pre.textContent = '\n' + JSON.stringify(scores, '\t', 2);
+
+    //saving to localStorage
+    localStorage.setItem('MyScoreList', JSON.stringify(scores));
+    fs.writeFile('scores.json',scores,finished)
+}
+
+var fs = require('fs')
+
+ const saveData = (avgScore) =>{
+     const finished = (error) =>{
+         if(error){
+             console.error(error)
+             return;
+         }
+     }
+     const jsonData = JSON.stringify(avgScore, null, 2)
+     fs.writeFile('scores.json',jsonData,finished)
+ }
+
+ function save (){
+
+     var data = [];
+     data.push(avgScore);
+
+     var data_string = JSON.stringify(data, null, 1);
+     fs.writeFile('scores.json',data_string,finished)
+     
+ }*/
