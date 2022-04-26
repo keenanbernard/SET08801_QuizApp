@@ -8,11 +8,24 @@
 
 body{
     background: #FEF5EF;
+    transition: 0.2s linear ;
 }
+
+body.dark-mode {
+    background: #292c35;
+  }
+
 
 ::selection {
     background: #6a0dad;
     color: #fff;
+}
+
+.toggleButton{
+    left: 95%;
+    position: absolute;
+    top: 5%;
+    transform: translate(-50%, -50%);
 }
 
 .vlmButton{
@@ -29,6 +42,7 @@ body{
     transform: translate(-50%, -50%);
 }
 
+.toggleButton button,
 .vlmButton button,
 .hmeButton button{
     border: none;
@@ -40,7 +54,14 @@ body{
     font-weight: 500;
     padding: 15px 30px;
     outline: none;
+    transition: 0.2s linear ;
 }
+
+.toggleButton button.dark-mode,
+.vlmButton button.dark-mode,
+.hmeButton button.dark-mode{
+    background: #292c35;
+  }
 
 .buttons button.restartButton{
     background: #6a0dad;
