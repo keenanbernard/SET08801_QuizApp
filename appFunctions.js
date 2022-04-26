@@ -1,6 +1,6 @@
 //selecting all required elements through classes
 const quizBody = document.body;
-const toggleButton = document.querySelector(".toggleButton button");
+const toggleMode = document.getElementById('tB');
 const homeButton = document.querySelector(".hmeButton button");
 const vlmButton = document.querySelector(".vlmButton button");
 const startButton = document.querySelector(".strtButton button");
@@ -16,26 +16,13 @@ const resultsBox = document.querySelector(".resultsBox");
 const quizSong = document.getElementById("quizSong");
 
 
-// action if volume button is selected to adjust setting
-toggleButton.addEventListener('click', function(){
-    const tog = this.querySelector('i');
-    
-        if (tog.classList.contains('fa-toggle-off')) {
-            tog.classList.remove('fa-toggle-off');
-            tog.classList.add('fa-toggle-on');
-            quizBody.classList.toggle("dark-mode");
-            toggleButton.classList.toggle("dark-mode");
-            homeButton.classList.toggle("dark-mode");
-            vlmButton.classList.toggle("dark-mode");
-         } else {
-            tog.classList.remove('fa-toggle-on');
-            tog.classList.add('fa-toggle-off');
-            quizBody.classList.toggle("dark-mode");
-            toggleButton.classList.toggle("dark-mode");
-            homeButton.classList.toggle("dark-mode");
-            vlmButton.classList.toggle("dark-mode");
-      }
-    });
+// action if volume button is selected to enable dark mode
+toggleMode.addEventListener('change', () => {
+    quizBody.classList.toggle("dark-mode");
+    homeButton.classList.toggle("dark-mode");
+    vlmButton.classList.toggle("dark-mode");
+});
+
 
 // action if volume button is selected to adjust setting
 vlmButton.addEventListener('click', function(){
