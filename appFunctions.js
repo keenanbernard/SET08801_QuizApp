@@ -1,56 +1,58 @@
-//selecting all required elements using classes
-const home_btn = document.querySelector(".hmeButton button");
-const start_btn = document.querySelector(".strtButton button");
+//selecting all required elements through classes
+const homeButton = document.querySelector(".hmeButton button");
+const vlmButton = document.querySelector(".vlmButton button");
+const startButton = document.querySelector(".strtButton button");
 const infoBox = document.querySelector(".infoBox");
-const exit_btn = infoBox.querySelector(".buttons .quitButton");
-const continue_btn = infoBox.querySelector(".buttons .restartButton");
+const exitButton = infoBox.querySelector(".buttons .quitButton");
+const continueButton = infoBox.querySelector(".buttons .restartButton");
 const quizBox = document.querySelector(".quizBox");
-const option_list = document.querySelector(".option_list");
+const optionList = document.querySelector(".option_list");
 const timerText = document.querySelector(".timer .time_left_text");
 const timerCount = document.querySelector(".timer .timer_sec");
-const timer_line = document.querySelector("header .timer_line");
+const timerLine = document.querySelector("header .timer_line");
 const resultsBox = document.querySelector(".resultsBox");
+const quizSong = document.getElementById("quiz_song");
 
 
 // action if volume button is selected to adjust setting
-document.querySelector(".vlmButton button").addEventListener('click', function(){
+vlmButton.addEventListener('click', function(){
 const vol = this.querySelector('i');
 
     if (vol.classList.contains('fa-volume-high')) {
         vol.classList.remove('fa-volume-high');
         vol.classList.add('fa-volume-xmark');
-        document.getElementById("quiz_song").volume = 0.0;
+        quizSong.volume = 0.0;
      } else {
      vol.classList.remove('fa-volume-xmark');
         vol.classList.add('fa-volume-high');
-        document.getElementById("quiz_song").volume = 0.5;
+        quizSong.volume = 0.5;
   }
 });
 
 
 // action if home button is clicked, reload the current window
-home_btn.onclick = ()=>{
+homeButton.onclick = ()=>{
     window.location.reload();
 }
 
 
 // action if startQuiz button is clicked, add info box to the screen
-start_btn.onclick = ()=>{
+startButton.onclick = ()=>{
     infoBox.classList.add("enabledInfo"); 
-    document.getElementById("quiz_song").volume = 0.5;
-    document.getElementById("quiz_song").play();
+    quizSong.volume = 0.5;
+    quizSong.play();
 }
 
 
 // action if exitQuiz button is clicked, remove info box from the screen
-exit_btn.onclick = ()=>{
+exitButton.onclick = ()=>{
     infoBox.classList.remove("enabledInfo");
-    document.getElementById("quiz_song").load();
+    quizSong.load();
 }
 
 
 // actions if continueQuiz button is clicked
-continue_btn.onclick = ()=>{
+continueButton.onclick = ()=>{
     infoBox.classList.remove("enabledInfo"); //remove info box
     quizBox.classList.add("enabledQuiz"); //add quiz box
     showQuestions(0); //showQuestions function called
@@ -86,8 +88,8 @@ restart_quiz.onclick = ()=>{
     questionCounter(queNumb); //passing queNumb through questionCounter function
     clearInterval(counter); //clear counter
     clearInterval(counterLine); //clear counterLine
-    startTimer(timeValue); 
-    startTimerLine(widthValue);
+    startTimer(timeValue); //passing timeValue through startTimer function
+    startTimerLine(widthValue);//passing widthValue through startTimerLine function
     updateInfo(queNumb); //passing queNumb through updateInfo function
     timerText.textContent = "Time Left"; //modifying the text used for timer
     nextButton.classList.remove("show"); //hide the next button
@@ -115,9 +117,9 @@ function showQuestions(index){
     + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
     + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
     question.innerHTML = que_tag; //adding new span tag inside que_tag
-    option_list.innerHTML = option_tag; //adding new div tag inside option_tag
+    optionList.innerHTML = option_tag; //adding new div tag inside option_tag
     
-    const option = option_list.querySelectorAll(".option");
+    const option = optionList.querySelectorAll(".option");
 
     // applying onclick attribute to all available options of current question
     for(i=0; i < option.length; i++){
@@ -170,7 +172,7 @@ function selectedOption(answer){
     clearInterval(counterLine); 
     let userAns = answer.textContent; //retrieving user selected option
     let correcAns = questions[queCount].answer; //retrieving correct answer from question array
-    const allOptions = option_list.children.length; //retrieving all option items
+    const allOptions = optionList.children.length; //retrieving all option items
     
     if(userAns == correcAns){ //if user selected option is equal to array's correct answer
         userScore += 1; //upgrading score value with 1
@@ -185,15 +187,15 @@ function selectedOption(answer){
         console.log("Wrong Answer");
 
         for(i=0; i < allOptions; i++){
-            if(option_list.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer 
-                option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
-                option_list.children[i].insertAdjacentHTML("beforeend", correctTag); //adding tick icon to matched option
+            if(optionList.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer 
+                optionList.children[i].setAttribute("class", "option correct"); //adding green color to matched option
+                optionList.children[i].insertAdjacentHTML("beforeend", correctTag); //adding tick icon to matched option
                 console.log("Auto selected correct answer.");
             }
         }
     }
     for(i=0; i < allOptions; i++){
-        option_list.children[i].classList.add("disabled"); //after choice selection, options are disabled
+        optionList.children[i].classList.add("disabled"); //after choice selection, options are disabled
     }
     nextButton.classList.add("show"); //display the next button after option is selected
 }
@@ -205,11 +207,11 @@ nextButton.onclick = ()=>{
         queCount++; //increment the queCount value
         queNumb++; //increment the queNumb value
         showQuestions(queCount);
-        questionCounter(queNumb); //passing queNumb through questionCounter function
+        questionCounter(queNumb);
         clearInterval(counter); 
         clearInterval(counterLine); 
-        startTimer(timeValue); //startTimer function called
-        startTimerLine(widthValue); //startTimerLine function called
+        startTimer(timeValue); 
+        startTimerLine(widthValue);
         timerText.textContent = "Time Left";
         nextButton.classList.remove("show");
         updateInfo(queNumb);
@@ -233,17 +235,17 @@ function startTimer(time){
         if(time < 0){ //if timer is less than 0
             clearInterval(counter);
             timerText.textContent = "Time Off";
-            const allOptions = option_list.children.length;
+            const allOptions = optionList.children.length;
             let correcAns = questions[queCount].answer; //getting correct answer from array
             for(i=0; i < allOptions; i++){
-                if(option_list.children[i].textContent == correcAns){ 
-                    option_list.children[i].setAttribute("class", "option correct"); 
-                    option_list.children[i].insertAdjacentHTML("beforeend", correctTag); 
+                if(optionList.children[i].textContent == correcAns){ 
+                    optionList.children[i].setAttribute("class", "option correct"); 
+                    optionList.children[i].insertAdjacentHTML("beforeend", correctTag); 
                     console.log("Time Off: Auto selected correct answer.");
                 }
             }
             for(i=0; i < allOptions; i++){
-                option_list.children[i].classList.add("disabled");
+                optionList.children[i].classList.add("disabled");
             }
             nextButton.classList.add("show");
         }
@@ -255,7 +257,7 @@ function startTimerLine(time){
     counterLine = setInterval(timer, 32);
     function timer(){
         time += 1; //upgrading time value with 1
-        timer_line.style.width = time + "px"; //increasing width of timer_line with px by time value
+        timerLine.style.width = time + "px"; //increasing width of timerLine with px by time value
         if(time > 945){ //if time value is greater than 945
             clearInterval(counterLine); //clear counterLine
         }
@@ -276,50 +278,3 @@ function showResults(){
     scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
 
 }
-
-/*
-
-let scores = []
-
-const addScore = (score)=>{
-    score.preventDefault();  //to stop the form submitting
-    let qscore = {
-        id: Date.now(),
-        result: score
-    }
-    scores.push(qscore);
-    document.forms[0].reset(); // to clear the form for the next entries
-    //document.querySelector('form').reset();
-
-    //for display purposes only
-    console.warn('added' , {scores} );
-    let pre = document.querySelector('#msg pre');
-    pre.textContent = '\n' + JSON.stringify(scores, '\t', 2);
-
-    //saving to localStorage
-    localStorage.setItem('MyScoreList', JSON.stringify(scores));
-    fs.writeFile('scores.json',scores,finished)
-}
-
-var fs = require('fs')
-
- const saveData = (avgScore) =>{
-     const finished = (error) =>{
-         if(error){
-             console.error(error)
-             return;
-         }
-     }
-     const jsonData = JSON.stringify(avgScore, null, 2)
-     fs.writeFile('scores.json',jsonData,finished)
- }
-
- function save (){
-
-     var data = [];
-     data.push(avgScore);
-
-     var data_string = JSON.stringify(data, null, 1);
-     fs.writeFile('scores.json',data_string,finished)
-     
- }*/
