@@ -63,7 +63,8 @@ body.dark-mode {
     background: #292c35;
   }
 
-.buttons button.restartButton{
+.buttons button.restartButton,
+.buttons button.quitButton{
     background: #6a0dad;
     color: #fff;
 }
@@ -72,14 +73,9 @@ body.dark-mode {
     background: #6a0dad;
 }
 
-.buttons button.quitButton{
-    background: #6a0dad;
-    color: #fff;
-}
-
 .buttons button.quitButton:hover{
     background: #6a0dad;
-    color: #fff;
+    color: #000;
 }
 
 .strtButton,

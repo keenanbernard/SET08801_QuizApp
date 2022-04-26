@@ -1,4 +1,5 @@
 //selecting all required elements through classes
+const quizBody = document.body;
 const toggleButton = document.querySelector(".toggleButton button");
 const homeButton = document.querySelector(".hmeButton button");
 const vlmButton = document.querySelector(".vlmButton button");
@@ -12,7 +13,7 @@ const timerText = document.querySelector(".timer .time_left_text");
 const timerCount = document.querySelector(".timer .timer_sec");
 const timerLine = document.querySelector("header .timer_line");
 const resultsBox = document.querySelector(".resultsBox");
-const quizSong = document.getElementById("quiz_song");
+const quizSong = document.getElementById("quizSong");
 
 
 // action if volume button is selected to adjust setting
@@ -22,16 +23,14 @@ toggleButton.addEventListener('click', function(){
         if (tog.classList.contains('fa-toggle-off')) {
             tog.classList.remove('fa-toggle-off');
             tog.classList.add('fa-toggle-on');
-            var element = document.body;
-            element.classList.toggle("dark-mode");
+            quizBody.classList.toggle("dark-mode");
             toggleButton.classList.toggle("dark-mode");
             homeButton.classList.toggle("dark-mode");
             vlmButton.classList.toggle("dark-mode");
          } else {
             tog.classList.remove('fa-toggle-on');
             tog.classList.add('fa-toggle-off');
-            var element = document.body;
-            element.classList.toggle("dark-mode");
+            quizBody.classList.toggle("dark-mode");
             toggleButton.classList.toggle("dark-mode");
             homeButton.classList.toggle("dark-mode");
             vlmButton.classList.toggle("dark-mode");
@@ -300,5 +299,4 @@ function showResults(){
     //span tags used to concat and present user score number, total question and score text to user
     let scoreTag = '<span>Your Fitness IQ Score is <p>'+ userScore+'/'+ questions.length +'</p><p>('+ avgScore +'%)</p></span>';
     scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
-
 }
