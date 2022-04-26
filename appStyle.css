@@ -101,7 +101,7 @@ body.dark-mode {
     background: #292c35;
 }
 
-@media screen and (max-width: 1440px) {
+/* @media screen and (max-width: 1440px) {
     .toggle {
         left: 96%;
     }
@@ -110,7 +110,8 @@ body.dark-mode {
         position: absolute !important;
         top: 94% !important;
     }
-}
+} */
+
 
 .buttons button.restartButton,
 .buttons button.quitButton{
