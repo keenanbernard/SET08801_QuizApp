@@ -1,6 +1,6 @@
 //selecting all required elements through classes
 const quizBody = document.body;
-const toggleButton = document.querySelector(".toggleButton button");
+const toggleMode = document.getElementById('tB');
 const homeButton = document.querySelector(".hmeButton button");
 const vlmButton = document.querySelector(".vlmButton button");
 const startButton = document.querySelector(".strtButton button");
@@ -15,9 +15,9 @@ const timerLine = document.querySelector("header .timer_line");
 const resultsBox = document.querySelector(".resultsBox");
 const quizSong = document.getElementById("quizSong");
 
-const chk = document.getElementById('chk');
 
-chk.addEventListener('change', () => {
+// action if button is selected to enable dark mode
+toggleMode.addEventListener('change', () => {
     quizBody.classList.toggle("dark-mode");
     homeButton.classList.toggle("dark-mode");
     vlmButton.classList.toggle("dark-mode");
